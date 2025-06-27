@@ -41,8 +41,8 @@
   * Positive side of two 9V batteries connected in series to +12V of L298N motor driver.
   * Negative side of the above 9V batteries to GND of L298N motor driver.
 
-### - Refer to the "Circuit-Diagram.png" file for the circuit diagram.
-### - Refer to the "complete-code" file for the code.
+### - Refer to the [Circuit-Diagram.png] () file for the circuit diagram.
+### - Refer to the [complete-code] () file for the code.
  
 ### - Tips:
   * Remove the jumper of the L298N motor driver module as the voltage supplied to the driver is more than 12V.
