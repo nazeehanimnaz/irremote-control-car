@@ -45,15 +45,17 @@
 ### - Refer to the [complete-code](https://github.com/nazeehanimnaz/irremote-control-car/blob/main/complete-code) file for the code.
  
 ### - Tips:
-  * Remove the jumper of the L298N motor driver module as the voltage supplied to the driver is more than 12V.
+  * Remove the jumper of the L298N motor driver module to disable the 5V regulator of the driver. This prevents damage to the driver as the voltage supplied to it, is more than 12V.
   * If a wheel is rotating in the opposite direction compared to the other wheels, interchange only that wheel's positive and negative connections.
   * If wheels do not rotate even after all the above connections are done correctly, check if the motor driver has its LEDs switched on. If yes, then use a multimeter to check the voltage of the batteries. Change the batteries if the voltage is down.
  
 
-### - Questions that may arise:
+### - FAQs:
   * Why does the L298N motor driver module need an external voltage of more than 12V?
     * The driver needs to power up four 5V DC motors. This is not going to an easy task if a lesser voltage is used. Try removing one 9V battery and observe how the wheels don't rotate now.
   * Then why is a 5V supplied by the Arduino to the L298N motor driver module?
-    * This is supplied to power up the driver and to make sure that the Arduino and the driver has a common ground. Observe how the L298N driver does not switch on if this connection is removed.
+    * When the jumper is removed, the 5V regulator of the driver is disabled. Now, the 5V pin of the driver acts as an input pin and expects a 5V supply to power the its logic circuitry. Observe how the L298N driver does not switch on if this connection is removed.
   * Why are 9V batteries used here instead of 18650 Li-ion rechargeable batteries?
     * I recommend using high quality 18650 Li-ion rechargeable batteries compared to using 9V batteries as Li-ion batteries are rechargeabale and very efficient for high powered devices. But the reasons why I used 9V batteries here are that, normal Li-ion batteries available in my country are not of good quality and can be used only a few times and the good quality ones are quite expensive.
+  * How can I give the Arduino a portable power supply instead of a powerbank?
+    * Use a seperate battery (not the one connected to the motor driver). Any type of battery can be used as long as it is within the recommended range. Either the barrel jack or the VIN can be used for this purpose. I recommend using high quality 18650 Li-ion rechargeable batteries for the reasons mentioned above. Using one 9V battery would not be efficient, as the battery would die very quickly.
