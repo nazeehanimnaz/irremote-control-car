@@ -6,7 +6,7 @@
   * L298N motor driver module x 1
   * 5V DC gear motor with wheel x 4
   * IR remote and receiver x 1
-  * 9V batteries x 2
+  * 3.7V 3500mA 18650 batteries x 2
   * Mini breadboard x 1
   * Car Chassis
   * Jumper Wires
@@ -38,8 +38,8 @@
   * VCC of IR receiver to the positive side of the breadboard.
   * GND of IR receiver to the negative side of the breadboard.
   * DO of IR receiver to digital pin 12 of Arduino.
-  * Positive side of two 9V batteries connected in series to +12V of L298N motor driver.
-  * Negative side of the above 9V batteries to GND of L298N motor driver.
+  * Positive side of two 18650 batteries connected in series to +12V of L298N motor driver.
+  * Negative side of the above 18650 batteries to GND of L298N motor driver.
 
 ### - Refer to the [Circuit-Diagram.png](https://github.com/nazeehanimnaz/irremote-control-car/blob/main/Circuit-Diagram.png) file for the circuit diagram.
 ### - Refer to the [complete-code](https://github.com/nazeehanimnaz/irremote-control-car/blob/main/complete-code) file for the code.
@@ -51,11 +51,9 @@
  
 
 ### - FAQs:
-  * Why does the L298N motor driver module need an external voltage of more than 12V?
-    * The driver needs to power up four 5V DC motors. This is not going to an easy task if a lesser voltage is used. Try removing one 9V battery and observe how the wheels don't rotate now.
   * Then why is a 5V supplied by the Arduino to the L298N motor driver module?
     * When the jumper is removed, the 5V regulator of the driver is disabled. Now, the 5V pin of the driver acts as an input pin and expects a 5V supply to power the its logic circuitry. Observe how the L298N driver does not switch on if this connection is removed.
-  * Why are 9V batteries used here instead of 18650 Li-ion rechargeable batteries?
-    * I recommend using high quality 18650 Li-ion rechargeable batteries compared to using 9V batteries as Li-ion batteries are rechargeabale and very efficient for high powered devices. But the reasons why I used 9V batteries here are that, normal Li-ion batteries available in my country are not of good quality and can be used only a few times and the good quality ones are quite expensive.
+  * Why use 18650 Li-ion rechargeable batteries?
+    * Rechargeble are always ech freindly and cost effective. Tehe 4 gear motors here only consume 6v each, and the connections are parallel according to the L298N. Hence a voltage of 6 would be enough for all 4 gear motors. But since the L298N consumes some extra voltage before giving it to the motors, we will need a voltage of bit more than 6v. We're using two 3.7v batteries which would give a total of 7.4v, which would be sufficient for the motors. Most important thing is to check the current supplied by the batteries. My batteries give 3500mA each and each gear motor uses a maximum of 250mA. Total current needed is 1000mA. Hence the batteries are good to give enough current to all the 4 motors.
   * How can I give the Arduino a portable power supply instead of a powerbank?
-    * Use a seperate battery (not the one connected to the motor driver). Any type of battery can be used as long as it is within the recommended range. Either the barrel jack or the VIN can be used for this purpose. I recommend using high quality 18650 Li-ion rechargeable batteries for the reasons mentioned above. Using one 9V battery would not be efficient, as the battery would die very quickly.
+    * Use a seperate battery (not the one connected to the motor driver). Any type of battery can be used as long as it is within the recommended range. Either the barrel jack or the VIN can be used for this purpose. With 5V and 2A.
