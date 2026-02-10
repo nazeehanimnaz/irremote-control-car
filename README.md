@@ -1,59 +1,79 @@
-# IR REMOTE CONTROL CAR
+ <div align="justify"> 
+
+## __WHAT IT DOES__
+This is an infra-red (IR) remote controlled car. <br>
+ - It follows intructions according to the program for each button in the IR remote.
+<br>
+
+## __COMPONENTS USED__
+
+1. Arduino UNO x1.
+2. L298N Motor Driver Module x1.
+3. Small Breadboard x1.
+4. 6V Gear Motor x4.
+5. 3.7V 3500mA 18650 Li-ion Rechargeable Battery x2.
+6. Switch x1.
+7. Jumper wires (as needed).
+8. IR remote control with receiver x1.
+
+## __EXTRA COMPONENTS NEEDED__
+
+8. 4 Wheel Car Chassis Kit (this will include 4 Gear Motors) x1.
+9. Battery chargers.
+10. Battery holders, brackets, protective case, etc. (if needed).
+11. Cardboards, color papers, etc. (for props and decorations).
+
+<br><br>
+
+_IMPORTANT NOTE: Do NOT make the robot heavy as this can put more load on the gear motors and cause the robot to NOT move. If the robot needs to be heavier, more powerful motors ranging between 5V to 46V must be used for the wheels. According to the required currect of the new motors, batteries also need to be replaced with batteries with higher current capacities. According to the required voltage for each new motor, batteries also should be replaced with batteries with higher voltage or more batteries of the same range should be connected in series with the already available batteries. As per the datasheet of L298N, the maximum voltage that can be handled by the L298N is 35V. But the recommended voltage is 5V to 12V, as above 12V the L298N can heat up. If the voltage exceeds 12V, the jumper of the L298N must be removed. Check out [this link](https://github.com/nazeehanimnaz/L298N-motor-driver-module/blob/main/README.md) to see how to calculate the exact amount of current and voltage required by a motor._
+
+<br>
+
+## __THE THEORY BEHIND__
+
+1. _How is everything powered up?_ <br>
+   - The rechargeable battery powers up the L298N motor driver module. As the total voltage of the batteries do not exceed 12v, the L298N's jumper is not removed. This makes the 5V pin of the L298N to act as an output. This output is used to give power to the Arduino. Then through the 5V pin of the Arduino, the IR receiver is powered up. <br>
+  
+2. _How does the robot detect the signals from the IR Remote?_
+   - THe IR remote is considered as the transmitter. Like in any other IR remotes, this remote also contains an IR LED, which emits IR rays. The receiver recieves the IR signal from the remote when a button is pressed. The arduino follows the intructions given for each buttons and helps the robot to work as instructed.
+  
+<br>
+
+## __TIPS__
+
+1. Use high quality batteries for efficiency.
+2. Remove the wire connected to the VIN pin of Arduino before connecting the Arduino to the PC/laptop to upload the code. Once the code is uploaded, disconnect the Arduino from the PC/laptop and connect the wire back to the VIN pin of the Arduino. This is to prevent too much voltage flowing into the Arduino via the laptop and the batteries.
+3. The most common issue while making robotics projects is that the wires break too soon. Either better wires instead of jumper wires should be used, or use a multimeter to constantly check if the jumper wires are in good condition.
+4. Check the Raw Data Value / Hex Code of each button in the serial monitor. This is to identify the code for each button and to use those codes to give instructions for each button. Checking this once is sufficient.
+
+<br>
+
+## __PROBLEMS FACED AND SOLUTIONS__
+
+1. _Why does the receiver not detect the signals given by the IR remote?_ <br>
+   There are 3 main reasons for this; <br>
+      - The receiver could be too far from the IR remote.<br>
+      - The battery in the IR Remote could be too low. Try changing the battery. <br>
+      - Check if any wires connected to the receiver is damaged or removed. Trying replacing the wires or connect the removed wires back again. <br>
+
+2. _Why do wheels rotate when off the floor, but not when on the floor?_ <br>
+   If wheels are rotating when off the floor, this means that there is no problem with the supplied voltage or current. There could be 3 reasons for this:
+      - It could be due to the heavy load the gear motors have when on the floor. For this reason, make the robot as light as you can. <br>
+      - The wheels might not be rotating in the correct directions. If the 2 wheels on the left or right side are rotating opposite to each other when it is supposed to move forward, then the robot will not move. When both wheels are moving opposite to each other, the direction becomes neutral and the robot stops moving. Always ensure, the wheels are rotating in the correct directions off the floor, before keeping the robot on the floor. <br>
+      - Check if the wheels are not aligned or stable and feels shakey when kept on the floor. If it is so, make sure to purchase a good quality chassis and check if all the screws used to fix the gear motors to the chassis are properly tightened. <br>
+
+3. _Why are the wheels not moving at all, even off the floor?_ <br>
+   - This could be due to several reasons from wrong connections, broken wires to short circuited boards. But if all is well and if the issue still persists, the issue could be due to the rechargeable batteries not being able to give enough power to the wheels. Recharge the batteries atleast till they reach a total voltage of 7.4V and try again. <br>
+
+4. _Why are the wheels only moving at full speed instead of varying or reduced speeds?_ <br>
+   - The ENA and ENB pins of the L298N should be connected to PWM pins of the Arduino. Only this allows speed to vary as given in the code. <br>
 
 
-### - Components and tools used:
-  * Arduino UNO with USB cable x 1
-  * L298N motor driver module x 1
-  * 5V DC gear motor with wheel x 4
-  * IR remote and receiver x 1
-  * 3.7V 3500mA 18650 batteries x 2
-  * Mini breadboard x 1
-  * Car Chassis
-  * Jumper Wires
-  * Power bank to power up the Arduino.
 
 
-### - Fix the 4 gear motors to the chassis (an instruction manual would usually be provided by the supplier of the chassis).
-### - Motor 1 is the front left motor.
-### - Motor 2 is the rear left motor.
-### - Motor 3 is the front right motor.
-### - Motor 4 is the rear right motor.
 
 
-### - Connections:
-  * 5V of Arduino to the positive side of the breadboard.
-  * GND of Arduino to the negative side of the breadboard.
-  * OUT1 of L298N motor driver to the positive sides of Motor 1 and Motor 2.
-  * OUT2 of L298N motor driver to the negative sides of Motor 1 and Motor 2.
-  * OUT3 of L298N motor driver to the positive sides of Motor 3 and Motor 4.
-  * OUT4 of L298N motor driver to the negative sides of Motor 3 and Motor 4. 
-  * ENA of L298N motor driver to digital pin 3 of Arduino.
-  * IN1 of L298N motor driver to digital pin 5 of Arduino.
-  * IN2 of L298N motor driver to digital pin 6 of Arduino.
-  * IN3 of L298N motor driver to digital pin 9 of Arduino.
-  * IN4 of L298N motor driver to digital pin 10 of Arduino.
-  * ENB of L298N motor driver to digital pin 11 of Arduino.
-  * +5V of L298N motor driver to the positive side of the breadboard.
-  * GND of L298N motor driver to the negative side of the breadboard.
-  * VCC of IR receiver to the positive side of the breadboard.
-  * GND of IR receiver to the negative side of the breadboard.
-  * DO of IR receiver to digital pin 12 of Arduino.
-  * Positive side of two 18650 batteries connected in series to +12V of L298N motor driver.
-  * Negative side of the above 18650 batteries to GND of L298N motor driver.
+</div>
+   
 
-### - Refer to the [Circuit-Diagram.png](https://github.com/nazeehanimnaz/irremote-control-car/blob/main/Circuit-Diagram.png) file for the circuit diagram.
-### - Refer to the [complete-code](https://github.com/nazeehanimnaz/irremote-control-car/blob/main/complete-code) file for the code.
- 
-### - Tips:
-  * Remove the jumper of the L298N motor driver module to disable the 5V regulator of the driver. This prevents damage to the driver as the voltage supplied to it, is more than 12V.
-  * If a wheel is rotating in the opposite direction compared to the other wheels, interchange only that wheel's positive and negative connections.
-  * If wheels do not rotate even after all the above connections are done correctly, check if the motor driver has its LEDs switched on. If yes, then use a multimeter to check the voltage of the batteries. Change the batteries if the voltage is down.
- 
-
-### - FAQs:
-  * Then why is a 5V supplied by the Arduino to the L298N motor driver module?
-    * When the jumper is removed, the 5V regulator of the driver is disabled. Now, the 5V pin of the driver acts as an input pin and expects a 5V supply to power the its logic circuitry. Observe how the L298N driver does not switch on if this connection is removed.
-  * Why use 18650 Li-ion rechargeable batteries?
-    * Rechargeble are always ech freindly and cost effective. Tehe 4 gear motors here only consume 6v each, and the connections are parallel according to the L298N. Hence a voltage of 6 would be enough for all 4 gear motors. But since the L298N consumes some extra voltage before giving it to the motors, we will need a voltage of bit more than 6v. We're using two 3.7v batteries which would give a total of 7.4v, which would be sufficient for the motors. Most important thing is to check the current supplied by the batteries. My batteries give 3500mA each and each gear motor uses a maximum of 250mA. Total current needed is 1000mA. Hence the batteries are good to give enough current to all the 4 motors.
-  * How can I give the Arduino a portable power supply instead of a powerbank?
-    * Use a seperate battery (not the one connected to the motor driver). Any type of battery can be used as long as it is within the recommended range. Either the barrel jack or the VIN can be used for this purpose. With 5V and 2A.
+   
