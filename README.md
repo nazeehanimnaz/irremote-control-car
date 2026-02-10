@@ -68,6 +68,9 @@ _IMPORTANT NOTE: Do NOT make the robot heavy as this can put more load on the ge
 4. _Why are the wheels only moving at full speed instead of varying or reduced speeds?_ <br>
    - The ENA and ENB pins of the L298N should be connected to PWM pins of the Arduino. Only this allows speed to vary as given in the code. <br>
 
+5. _Why is the Serial Monitor printing some unidentifiable characters when I want to check the raw data value for each button?_ <br>
+   - After opening the Serial monitor, change the buad rate to the baud rate used in the code, i.e. 115200. <br>
+
 
 
 
